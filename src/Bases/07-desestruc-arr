@@ -1,0 +1,10 @@
+
+
+
+const camelState= (valor)=>{
+    return [valor, ()=>console.log('hola mundo')]
+}
+
+const [nombre, semejante] =camelState('goku');
+console.log(nombre)
+semejante()
