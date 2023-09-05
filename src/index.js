@@ -1,13 +1,43 @@
-import {heroes} from './data/heroes'
+import  {getHeroeById}  from "./Bases/08-find-filter";
 
-const getHeroeById= (id)=>{
-    return heroes.find((x)=>x.id===id)
+
+
+// const promesa = new Promise( (resolved, reject)=>{
+//     setTimeout(()=>{
+//         const heroe= getHeroeById(2)
+//         resolved(heroe)
+//         console.log('5 segundos despues')
+//     },5000)
+// }
+
+// );
+
+// promesa.then((heroe)=>{
+//     setTimeout(()=>{
+        
+//         console.log(heroe)
+//     },10000)
+// })
+// .catch(err=>console.warn(err))
+
+
+const getHeroeByIdAsync = (id) =>{
+    return new Promise( (resolved, reject)=>{
+        setTimeout(()=>{
+            const heroe= getHeroeById(id);
+            heroe?resolved(heroe):reject('no se encontro el heroe');
+            console.log('5 segundos despues')
+        },5000)
+    }
+    
+    );
+   
 }
 
-console.log(getHeroeById(4))
-
-
-const getHeroeByOwner= (owner)=> heroes.filter((x)=>x.owner===owner)
-    
-
-console.log(getHeroeByOwner('Marvel'))
+getHeroeByIdAsync(10).then((heroe)=>{
+        setTimeout(()=>{
+            
+            console.log(heroe)
+        },10000)
+    })
+    .catch(err=>console.warn(err))
